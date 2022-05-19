@@ -1,0 +1,22 @@
+@media (max-width: 991px) {
+    .conteiner {
+        max-width: 850px;
+    }
+    .promo__header {
+        font-size: 35px;
+    }
+    .carousel__inner {
+        width: 550px;
+        img {
+            width: 550px;
+        }
+    }
+    .catalog__content {
+        margin-top: 30px;
+        justify-content: center;
+    }
+    .catalog-item {
+        margin: 0 10px 20px 10px;
+    }
+}
+    
