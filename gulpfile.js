@@ -31,6 +31,6 @@ gulp.task('styles', function() { /* Задача для компіляції с�
 // Відстеження змін в файлах SASS та CSS
 gulp.task('watch', function() {
     gulp.watch("src/sass/**/*.+(scss|sass)", gulp.parallel('styles'));
-})
+});
 
 gulp.task('default', gulp.parallel('watch', 'server', 'styles')); /* Запускаємо размо команди */

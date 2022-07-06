@@ -30,9 +30,9 @@ $(document).ready(function(){
                 e.preventDefault();
                 $('.catalog-item__content').eq(i).toggleClass('catalog-item__content_active');
                 $('.catalog-item__list').eq(i).toggleClass('catalog-item__list_active');
-            })
+            });
         });
-    };
+    }
 
     toggleSlide('.catalog-item__link');
     toggleSlide('.catalog-item__back');
@@ -89,4 +89,38 @@ $(document).ready(function(){
 
     $('input[name=phone]').mask("+38 (999) 999-9999");
 
-  });
+
+    // Sending email
+    $('form').submit(function(e) {
+        e.preventDefault();                 //відмінити стандартну поведінку браузера
+
+        if(!$(this).valid()) {
+            return;                         //заборона відправки пустої форми
+        }
+
+        $.ajax({                            //технологія обміну данними без перезавантаження сторінки
+            type: "POST",                   //відправка
+            url: "mailer/smart.php",        //файл для роботи з сервером
+            data: $(this).serialize()       //вказуємо яку інформацію відправляємо на сервер
+        }).done(function() {                //обробка відповіді від сервера
+            $(this).find("input").val("");  //очистити поля форми
+            $('#consultation, #order').fadeOut();
+            $('.overlay, #thanks').fadeIn('slow');
+
+            $('form').trigger('reset');     //оновити форму
+        });
+        return false;                       //повторити, якщо помилка
+    });
+
+    //   Smooth scroll and pageup
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 1600) {
+            $('.pageup').fadeIn();
+        }
+        else {
+            $('.pageup').fadeOut();
+        }
+    });
+
+});
